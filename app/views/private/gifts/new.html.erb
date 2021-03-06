@@ -1,0 +1,49 @@
+<%= @gift.errors.messages %>
+<%= form_for @gift do |f| %>
+
+  <div class="field">
+    <label class="label">Имя подарка</label>
+    <div class="control">
+      <%= f.text_field :name, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Описание</label>
+    <div class="control">
+      <%= f.text_field :description, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Дата</label>
+    <div class="control">
+      <%= f.date_select :occurrence_at %>
+      <%= f.time_select :occurrence_at, ignore_date: true %>
+    </div>
+  </div>
+  <%= f.fields_for :recepient do |recepient_form|%>
+    <div class="field">
+      <label class="label">Email получателя</label>
+      <div class="control">
+        <%= recepient_form.text_field :email, class: 'input' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label class="label">Содержимое</label>
+    <div class="control">
+      <%= f.text_area :content, {class: '', cols: 100, rows: 10} %>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <input type="submit" value="Создать" class="button is-link"/>
+    </div>
+    <div class="control">
+      <a href="/gifts" class="button is-link is-light">Назад</a>
+    </div>
+  </div>
+<% end %>

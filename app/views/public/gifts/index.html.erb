@@ -1,0 +1,26 @@
+<h1 class="is-size-2 pb-3">Мои подарки</h1>
+<p class="pb-2"> Количество подарков: <%= @gifts.count %></p>
+<% if @gifts.count == 0%>
+  <div>
+    Вы ошиблись кодом или вам ещё не сделали ни одного подарка :(
+  </div>
+<% else %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Время наступления</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gifts.each do |gift|%>
+      <tr>
+        <td><a href="<%= public_gift_path(gift.access_hash, gift.id) %>"><%= gift.name%></td></td>
+        <td><%= gift.description%></td>
+        <td><%= gift.occurrence_at.strftime("%d.%m.%Y %H:%M")%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

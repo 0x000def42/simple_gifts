@@ -1,0 +1,26 @@
+<h1 class="is-size-2 pb-3">Подарки</h1>
+<a class="button is-small is-info" href="/gifts/new">
+  Новый
+</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Время наступления</th>
+      <th>Получатель</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gifts.each do |gift|%>
+      <tr>
+        <td><a href="<%= gift_path(gift.id) %>"><%= gift.name%></td></td>
+        <td><%= gift.description%></td>
+        <td><%= gift.occurrence_at.strftime("%d.%m.%Y %H:%M")%></td>
+        <td><%= gift.recepient.email %></td>
+        <td><%= link_to 'Удалить', gift_path(gift), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

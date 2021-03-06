@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Present</title>
+    <title>Simple Gifts</title>
+    <script src="https://kit.fontawesome.com/902cbad051.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/bulma.min.css">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +12,66 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="display: flex; min-height: 100vh; flex-direction: column; justify-content: space-between">
+  <div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="/logo.png" >
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/about">
+              Как это работает?
+            </a>
+
+            <% if current_user %>
+              <a class="navbar-item" href="/gifts">
+                Подарки
+              </a>
+            <% end %>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <% if current_user %>
+                <span class="pr-3">Привет, <%= current_user.email %></span>
+                <%= link_to "Выход", destroy_user_session_path, method: :delete, class: 'button is-light' %>
+              <% else %>
+                <div class="buttons">
+                  <a class="button is-info" href="<%= new_user_registration_path %>">
+                    <strong>Регистрация</strong>
+                  </a>
+                  <a class="button is-light" href="<%= new_user_session_path %>">
+                    Вход
+                  </a>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Simple Gifts</strong> made with ❤️ by <a href="https://github.com/0x000def42">xdef42</a>
+      </p>
+    </div>
+    <div class="content has-text-centered">
+      <p>
+        Source code placed in <a href="https://github.com/0x000def42/simple_gifts">github.com/0x000def42/simple_gift</a>
+      </p>
+    </div>
+  </footer>
   </body>
 </html>

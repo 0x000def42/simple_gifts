@@ -1,0 +1,17 @@
+<% unless @gift%>
+  <h1 class="is-size-4">Подарок не найден</h1>
+<% else %>
+  <h1 class="is-size-4"><%= @gift.name %></h1>
+  <h2 class="is-size-6"><%= @gift.description %></h2>
+  <hr>
+  <div class="content pb-3">
+    <%= raw @gift.content %>
+  </div>
+  <hr>
+  <p>Дата: <%= @gift.occurrence_at.strftime("%d.%m.%Y %H:%M")%></p>
+  <p>Код доступа: <%= @gift.access_hash %></p>
+  <hr>
+  <a class="button is-info" href="<%= edit_gift_path @gift %>">
+    Изменить
+  </a>
+<% end %>

@@ -1,0 +1,14 @@
+<% unless @gift%>
+  <h1 class="is-size-4">Подарок не найден</h1>
+<% else %>
+  <h1 class="is-size-4"><%= @gift.name %></h1>
+  <h2 class="is-size-6"><%= @gift.description %></h2>
+  <hr>
+  <p class="content pb-3">
+    <% if @gift.occurrence_at > Time.zone.now %>
+      Подарок будет доступен после: <%= @gift.occurrence_at.strftime("%d.%m.%Y %H:%M")%>
+    <% else %>
+    <%= raw @gift.content %>
+    <% end %>
+  </p>
+<% end %>
